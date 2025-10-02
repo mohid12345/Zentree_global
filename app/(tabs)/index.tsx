@@ -1,98 +1,264 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Colors } from '@/constants/theme';
+import { internationalColleges, localColleges } from '@/data/colleges';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { router } from 'expo-router';
+import React from 'react';
+import { Dimensions, Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+  const navigateToLocal = () => router.push('/(tabs)/local-education');
+  const navigateToInternational = () => router.push('/(tabs)/international-education');
+
+  return (
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+      {/* Header Section */}
+      <ThemedView style={[styles.header, { backgroundColor: colors.primary }]}>
+        <View style={styles.headerContent}>
+          <Image 
+            source={require('@/assets/ZENTREE_logo_small.png')} 
+            style={styles.headerLogo}
+            resizeMode="contain"
+          />
+        </View>
+        <IconSymbol name="graduationcap.fill" size={80} color="white" style={styles.headerIcon} />
+      </ThemedView>
+
+      {/* Welcome Section */}
+      <ThemedView style={styles.welcomeSection}>
+        <ThemedText type="subtitle" style={styles.welcomeTitle}>
+          Welcome to Your Educational Journey
+        </ThemedText>
+        <ThemedText style={[styles.welcomeText, { color: colors.secondary }]}>
+          Discover the best educational opportunities both locally and internationally. 
+          We help you find the perfect institution to achieve your academic dreams.
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+
+      {/* Quick Actions */}
+      <View style={styles.quickActions}>
+        <TouchableOpacity 
+          style={[styles.actionCard, { borderColor: colors.border }]}
+          onPress={navigateToLocal}
+        >
+          <IconSymbol name="building.2.fill" size={40} color={colors.primary} />
+          <ThemedText type="defaultSemiBold" style={styles.actionTitle}>
+            Domestic 
+          </ThemedText>
+          <ThemedText style={[styles.actionSubtitle, { color: colors.secondary }]}>
+            {localColleges.length} institutions available
+          </ThemedText>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.actionCard, { borderColor: colors.border }]}
+          onPress={navigateToInternational}
+        >
+          <IconSymbol name="globe" size={40} color={colors.accent} />
+          <ThemedText type="defaultSemiBold" style={styles.actionTitle}>
+            International
+          </ThemedText>
+          <ThemedText style={[styles.actionSubtitle, { color: colors.secondary }]}>
+            {internationalColleges.length} universities worldwide
+          </ThemedText>
+        </TouchableOpacity>
+      </View>
+
+      {/* Features Section */}
+      <ThemedView style={styles.featuresSection}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>
+          Why Choose ZenTree?
         </ThemedText>
+        
+        <View style={styles.featuresList}>
+          <View style={styles.featureItem}>
+            <IconSymbol name="checkmark.circle.fill" size={24} color={colors.success} />
+            <ThemedText style={styles.featureText}>
+              Comprehensive college database
+            </ThemedText>
+          </View>
+          
+          <View style={styles.featureItem}>
+            <IconSymbol name="checkmark.circle.fill" size={24} color={colors.success} />
+            <ThemedText style={styles.featureText}>
+              Expert guidance and counseling
+            </ThemedText>
+          </View>
+          
+          <View style={styles.featureItem}>
+            <IconSymbol name="checkmark.circle.fill" size={24} color={colors.success} />
+            <ThemedText style={styles.featureText}>
+              Application assistance
+            </ThemedText>
+          </View>
+          
+          <View style={styles.featureItem}>
+            <IconSymbol name="checkmark.circle.fill" size={24} color={colors.success} />
+            <ThemedText style={styles.featureText}>
+              Scholarship information
+            </ThemedText>
+          </View>
+        </View>
       </ThemedView>
-    </ParallaxScrollView>
+
+      {/* CTA Section */}
+      <ThemedView style={[styles.ctaSection, { backgroundColor: colors.card }]}>
+        <ThemedText type="subtitle" style={styles.ctaTitle}>
+          Ready to Start Your Journey?
+        </ThemedText>
+        <ThemedText style={[styles.ctaText, { color: colors.secondary }]}>
+          Explore our extensive database of educational institutions and find your perfect match.
+        </ThemedText>
+        
+        <View style={styles.ctaButtons}>
+          <TouchableOpacity 
+            style={[styles.ctaButton, { backgroundColor: colors.primary }]}
+            onPress={navigateToLocal}
+          >
+            <ThemedText style={styles.ctaButtonText}>Browse Domestic Colleges</ThemedText>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.ctaButtonSecondary, { borderColor: colors.primary }]}
+            onPress={navigateToInternational}
+          >
+            <ThemedText style={[styles.ctaButtonTextSecondary, { color: colors.primary }]}>
+              Explore International Colleges
+            </ThemedText>
+          </TouchableOpacity>
+        </View>
+      </ThemedView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+  },
+  header: {
+    paddingTop: 60,
+    paddingBottom: 15,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  headerContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerLogo: {
+    width: 250,
+    height: 80,
+  },
+  headerSubtitle: {
+    color: 'white',
+    fontSize: 16,
+    opacity: 0.9,
+  },
+  headerIcon: {
+    opacity: 0.8,
+  },
+  welcomeSection: {
+    padding: 20,
+  },
+  welcomeTitle: {
+    marginBottom: 12,
+  },
+  welcomeText: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  quickActions: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    gap: 12,
+    marginBottom: 30,
+  },
+  actionCard: {
+    flex: 1,
+    padding: 20,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  actionTitle: {
+    marginTop: 12,
+    marginBottom: 4,
+    fontSize: 16,
+  },
+  actionSubtitle: {
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  featuresSection: {
+    padding: 20,
+  },
+  sectionTitle: {
+    marginBottom: 16,
+  },
+  featuresList: {
+    gap: 12,
+  },
+  featureItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 12,
   },
-  stepContainer: {
-    gap: 8,
+  featureText: {
+    fontSize: 16,
+    flex: 1,
+  },
+  ctaSection: {
+    margin: 20,
+    padding: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  ctaTitle: {
     marginBottom: 8,
+    textAlign: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  ctaText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 22,
+  },
+  ctaButtons: {
+    width: '100%',
+    gap: 12,
+  },
+  ctaButton: {
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  ctaButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  ctaButtonSecondary: {
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    borderWidth: 2,
+    alignItems: 'center',
+  },
+  ctaButtonTextSecondary: {
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
