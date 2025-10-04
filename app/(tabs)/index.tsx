@@ -12,7 +12,7 @@ const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? 'light'];
+  const colors = Colors[colorScheme ?? 'light']; 
 
   const navigateToLocal = () => router.push('/(tabs)/local-education');
   const navigateToInternational = () => router.push('/(tabs)/international-education');
