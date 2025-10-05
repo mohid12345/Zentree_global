@@ -3,14 +3,15 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
-import { internationalColleges } from '@/data/colleges';
+import { useColleges } from '@/hooks/use-colleges';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, ScrollView, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function InternationalEducationScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { internationalColleges, loading, error } = useColleges();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
 
@@ -41,6 +42,31 @@ export default function InternationalEducationScreen() {
     
     return matchesSearch && college.country === countryMap[selectedCountry];
   });
+
+  if (loading) {
+    return (
+      <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
+        <ActivityIndicator size="large" color={colors.primary} />
+        <ThemedText style={[styles.loadingText, { color: colors.secondary }]}>
+          Loading colleges...
+        </ThemedText>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={[styles.errorContainer, { backgroundColor: colors.background }]}>
+        <IconSymbol name="exclamationmark.triangle.fill" size={60} color="#ef4444" />
+        <ThemedText type="subtitle" style={styles.errorTitle}>
+          Unable to Load Data
+        </ThemedText>
+        <ThemedText style={[styles.errorText, { color: colors.secondary }]}>
+          {error}
+        </ThemedText>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -176,124 +202,4 @@ export default function InternationalEducationScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    paddingTop: 60,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  headerContent: {
-    flex: 1,
-  },
-  headerTitle: {
-    color: 'white',
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    color: 'white',
-    fontSize: 16,
-    opacity: 0.9,
-  },
-  headerIcon: {
-    opacity: 0.8,
-  },
-  searchSection: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 12,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-  },
-  filtersSection: {
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-  },
-  filterLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 12,
-  },
-  filtersContainer: {
-    gap: 8,
-  },
-  filterChip: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-  },
-  filterText: {
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  statsSection: {
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  statCard: {
-    flex: 1,
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    alignItems: 'center',
-    gap: 4,
-  },
-  statNumber: {
-    fontSize: 20,
-    marginTop: 4,
-  },
-  statLabel: {
-    fontSize: 12,
-    textAlign: 'center',
-  },
-  resultsSection: {
-    paddingHorizontal: 20,
-    paddingBottom: 8,
-  },
-  resultsText: {
-    fontSize: 14,
-  },
-  collegesList: {
-    paddingBottom: 20,
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: 60,
-    paddingHorizontal: 20,
-  },
-  emptyTitle: {
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  emptyText: {
-    textAlign: 'center',
-    fontSize: 16,
-  },
-  bottomSpacing: {
-    height: 20,
-  },
-});
 
