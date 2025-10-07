@@ -24,7 +24,7 @@ export const localColleges: College[] = [
     tuitionFee: 'PKR 200,000/year',
     programs: ['Computer Science', 'Software Engineering', 'Electrical Engineering', 'Mechanical Engineering'],
     rating: 4.5,
-    image: 'https://via.placeholder.com/300x200/2563eb/ffffff?text=UoT',
+    image: 'https://plus.unsplash.com/premium_photo-1682974406909-4d1949ab75ab?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1995,
     accreditation: ['HEC', 'PEC']
   },
@@ -38,7 +38,7 @@ export const localColleges: College[] = [
     tuitionFee: 'PKR 300,000/year',
     programs: ['MBA', 'BBA', 'Finance', 'Marketing', 'Human Resources'],
     rating: 4.3,
-    image: 'https://via.placeholder.com/300x200/10b981/ffffff?text=NCB',
+    image: 'https://plus.unsplash.com/premium_photo-1733306455377-2ef61e873f69?q=80&w=1127&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1988,
     accreditation: ['HEC', 'AACSB']
   },
@@ -52,7 +52,7 @@ export const localColleges: College[] = [
     tuitionFee: 'PKR 500,000/year',
     programs: ['MBBS', 'BDS', 'Pharmacy', 'Nursing', 'Medical Technology'],
     rating: 4.7,
-    image: 'https://via.placeholder.com/300x200/dc2626/ffffff?text=MUP',
+    image: 'https://images.unsplash.com/photo-1632707559539-8455010ca185?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1960,
     accreditation: ['PMDC', 'HEC']
   },
@@ -66,7 +66,7 @@ export const localColleges: College[] = [
     tuitionFee: 'PKR 150,000/year',
     programs: ['Fine Arts', 'Graphic Design', 'Interior Design', 'Fashion Design'],
     rating: 4.2,
-    image: 'https://via.placeholder.com/300x200/7c3aed/ffffff?text=IAD',
+    image: 'https://images.unsplash.com/photo-1632707559539-8455010ca185?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 2005,
     accreditation: ['HEC']
   }
@@ -83,7 +83,7 @@ export const internationalColleges: College[] = [
     tuitionFee: '$54,000/year',
     programs: ['Law', 'Medicine', 'Business', 'Engineering', 'Liberal Arts'],
     rating: 4.9,
-    image: 'https://via.placeholder.com/300x200/8b0000/ffffff?text=Harvard',
+    image: 'https://images.unsplash.com/photo-1619610250976-116d18349e0d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1636,
     accreditation: ['NEASC', 'AACSB', 'LCME']
   },
@@ -97,7 +97,7 @@ export const internationalColleges: College[] = [
     tuitionFee: '£30,000/year',
     programs: ['Philosophy', 'Politics', 'Economics', 'Medicine', 'Law'],
     rating: 4.8,
-    image: 'https://via.placeholder.com/300x200/003366/ffffff?text=Oxford',
+    image: 'https://plus.unsplash.com/premium_photo-1714259939526-4ef4ffa03caf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1096,
     accreditation: ['QAA', 'GMC']
   },
@@ -111,7 +111,7 @@ export const internationalColleges: College[] = [
     tuitionFee: 'CAD $58,000/year',
     programs: ['Computer Science', 'Medicine', 'Engineering', 'Business', 'Arts & Science'],
     rating: 4.6,
-    image: 'https://via.placeholder.com/300x200/003f7f/ffffff?text=UofT',
+    image: 'https://images.unsplash.com/photo-1743327572772-eca3c63b029e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1827,
     accreditation: ['AUCC', 'AACSB']
   },
@@ -125,7 +125,7 @@ export const internationalColleges: College[] = [
     tuitionFee: 'AUD $45,000/year',
     programs: ['International Relations', 'Economics', 'Science', 'Engineering', 'Law'],
     rating: 4.5,
-    image: 'https://via.placeholder.com/300x200/ff6600/ffffff?text=ANU',
+    image: 'https://images.unsplash.com/photo-1584415965060-a5279d4d24c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1946,
     accreditation: ['TEQSA', 'AACSB']
   },
@@ -139,7 +139,7 @@ export const internationalColleges: College[] = [
     tuitionFee: '€3,000/year',
     programs: ['Engineering', 'Computer Science', 'Natural Sciences', 'Medicine', 'Management'],
     rating: 4.4,
-    image: 'https://via.placeholder.com/300x200/0065bd/ffffff?text=TUM',
+    image: 'https://plus.unsplash.com/premium_photo-1713364681305-a4f317313223?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     established: 1868,
     accreditation: ['AQAS', 'FIBAA']
   }

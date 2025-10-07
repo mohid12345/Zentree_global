@@ -5,8 +5,10 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColleges } from '@/hooks/use-colleges';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import Entypo from '@expo/vector-icons/Entypo';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import React, { useState } from 'react';
-import { ActivityIndicator, ScrollView, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function InternationalEducationScreen() {
   const colorScheme = useColorScheme();
@@ -71,7 +73,7 @@ export default function InternationalEducationScreen() {
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Header */}
-      <ThemedView style={[styles.header, { backgroundColor: colors.accent }]}>
+      <ThemedView style={[styles.header, { backgroundColor: colors.primary }]}>
         <View style={styles.headerContent}>
           <ThemedText type="title" style={styles.headerTitle}>
             International Education
@@ -80,7 +82,8 @@ export default function InternationalEducationScreen() {
             {internationalColleges.length} universities worldwide
           </ThemedText>
         </View>
-        <IconSymbol name="globe" size={60} color="white" style={styles.headerIcon} />
+        {/* <IconSymbol name="globe" size={60} color="white" style={styles.headerIcon} /> */}
+        <Entypo name="globe" size={60} color="white" style={styles.headerIcon} />
       </ThemedView>
 
       {/* Search Bar */}
@@ -112,7 +115,7 @@ export default function InternationalEducationScreen() {
               style={[
                 styles.filterChip,
                 {
-                  backgroundColor: selectedCountry === country.key ? colors.accent : colors.card,
+                  backgroundColor: selectedCountry === country.key ? colors.primary : colors.card,
                   borderColor: colors.border,
                 }
               ]}
@@ -133,7 +136,8 @@ export default function InternationalEducationScreen() {
       <ThemedView style={styles.statsSection}>
         <View style={styles.statsContainer}>
           <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-            <IconSymbol name="graduationcap.fill" size={24} color={colors.primary} />
+            {/* <IconSymbol name="graduationcap.fill" size={24} color={colors.primary} /> */}
+            <Entypo name="graduation-cap" size={24} color={colors.primary} />
             <ThemedText type="defaultSemiBold" style={styles.statNumber}>
               {filteredColleges.length}
             </ThemedText>
@@ -143,7 +147,7 @@ export default function InternationalEducationScreen() {
           </View>
           
           <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-            <IconSymbol name="globe" size={24} color={colors.accent} />
+             <Entypo name="globe" size={24} color={colors.primary} />
             <ThemedText type="defaultSemiBold" style={styles.statNumber}>
               {new Set(filteredColleges.map(c => c.country)).size}
             </ThemedText>
@@ -153,7 +157,8 @@ export default function InternationalEducationScreen() {
           </View>
           
           <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-            <IconSymbol name="book.fill" size={24} color={colors.success} />
+            {/* <IconSymbol name="book.fill" size={24} color={colors.success} /> */}
+            <FontAwesome5 name="book" size={24} color={colors.primary} />
             <ThemedText type="defaultSemiBold" style={styles.statNumber}>
               {filteredColleges.reduce((acc, college) => acc + college.programs.length, 0)}
             </ThemedText>
@@ -202,4 +207,157 @@ export default function InternationalEducationScreen() {
     </ScrollView>
   );
 }
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  loadingText: {
+    marginTop: 16,
+    fontSize: 16,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  errorTitle: {
+    marginTop: 16,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  header: {
+    paddingTop: 60,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  headerContent: {
+    flex: 1,
+  },
+  headerTitle: {
+    color: 'white',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  headerSubtitle: {
+    color: 'white',
+    fontSize: 16,
+    opacity: 0.9,
+  },
+  headerIcon: {
+    opacity: 0.8,
+  },
+  searchSection: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 12,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+  },
+  filtersSection: {
+    paddingBottom: 16,
+  },
+  filtersContainer: {
+    paddingHorizontal: 20,
+    gap: 8,
+  },
+  filterChip: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  filterText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  filterLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  resultsSection: {
+    paddingHorizontal: 20,
+    paddingBottom: 8,
+  },
+  resultsText: {
+    fontSize: 14,
+  },
+  collegesList: {
+    paddingBottom: 20,
+  },
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: 60,
+    paddingHorizontal: 20,
+  },
+  emptyTitle: {
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  emptyText: {
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  bottomSpacing: {
+    height: 20,
+  },
+  statsSection: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  statCard: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+  },
+  statNumber: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 8,
+  },
+  statLabel: {
+    fontSize: 14,
+    marginTop: 4,
+    textAlign: 'center',
+  },
+});
 

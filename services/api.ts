@@ -1,6 +1,6 @@
 import { College } from '@/data/colleges';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'http://192.168.1.37:3000/api';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -14,6 +14,9 @@ export class ApiService {
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
     try {
+      console.log('baseurl : ', API_BASE_URL);
+      console.log('endpoint current : ', endpoint);
+      
       const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         headers: {
           'Content-Type': 'application/json',

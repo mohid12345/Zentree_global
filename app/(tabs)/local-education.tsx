@@ -5,6 +5,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColleges } from '@/hooks/use-colleges';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import React, { useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
@@ -66,13 +67,14 @@ export default function LocalEducationScreen() {
       <ThemedView style={[styles.header, { backgroundColor: colors.primary }]}>
         <View style={styles.headerContent}>
           <ThemedText type="title" style={styles.headerTitle}>
-            Local Education
+            Domestic Education
           </ThemedText>
           <ThemedText style={styles.headerSubtitle}>
             {localColleges.length} institutions in Pakistan
           </ThemedText>
         </View>
-        <IconSymbol name="building.2.fill" size={60} color="white" style={styles.headerIcon} />
+        {/* <IconSymbol name="building.2.fill" size={60} color="white" style={styles.headerIcon} /> */}
+           <FontAwesome6 name="tree-city" size={40} color="white"  style={styles.headerIcon}/>
       </ThemedView>
 
       {/* Search Bar */}

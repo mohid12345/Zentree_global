@@ -1,5 +1,4 @@
 import { College } from '@/data/colleges';
-import { ApiService } from '@/services/api';
 import { useEffect, useState } from 'react';
 
 export interface UseCollegesResult {
@@ -16,30 +15,48 @@ export function useColleges(): UseCollegesResult {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchColleges = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await ApiService.getColleges();
-      
-      if (response.success && response.data) {
-        setColleges(response.data);
-      } else {
-        setError(response.message || 'Failed to fetch colleges');
-        // Fallback to local data if API fails
-        const { getAllColleges } = await import('@/data/colleges');
-        setColleges(getAllColleges());
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error occurred');
-      // Fallback to local data
-      const { getAllColleges } = await import('@/data/colleges');
-      setColleges(getAllColleges());
-    } finally {
-      setLoading(false);
+  // const fetchColleges = async () => {
+  //   try {
+  //     setLoading(true);
+  //     setError(null);
+  //     console.log('Fetching colleges...'); // Log API call
+
+  //     const response = await ApiService.getColleges();
+  //     console.log('API Response:', response); // Log API response
+
+  //     if (response.success && response.data) {
+  //       setColleges(response.data);
+  //     } else {
+  //       setError(response.message || 'Failed to fetch colleges');
+  //       console.log('API Error:', response.message); // Log API error
+  //       // Fallback to local data if API fails
+  //       const { getAllColleges } = await import('@/data/colleges');
+  //       setColleges(getAllColleges());
+  //     }
+  //   } catch (err) {
+  //     console.error('Fetch Error:', err); // Log fetch error
+  //     setError(err instanceof Error ? err.message : 'Unknown error occurred');
+  //     // Fallback to local data
+  //     const { getAllColleges } = await import('@/data/colleges');
+  //     setColleges(getAllColleges());
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  const fetchColleges = async() => {
+    try{
+      setLoading(true)
+      setError(null)
+    //  await new Promise(resolve => setTimeout(resolve, 20000));
+
+      const {getAllColleges} = await import('@/data/colleges')
+      setColleges(getAllColleges())
+    } catch(err){
+      setError('error happended :')
+    } finally{
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
     fetchColleges();

@@ -4,9 +4,12 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColleges } from '@/hooks/use-colleges';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import Entypo from '@expo/vector-icons/Entypo';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { router } from 'expo-router';
 import React from 'react';
 import { ActivityIndicator, Dimensions, Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+
 
 const { width } = Dimensions.get('window');
 
@@ -83,7 +86,8 @@ export default function HomeScreen() {
           style={[styles.actionCard, { borderColor: colors.border }]}
           onPress={navigateToLocal}
         >
-          <IconSymbol name="building.2.fill" size={40} color={colors.primary} />
+         
+          <FontAwesome6 name="tree-city" size={40} color={colors.primary} />
           <ThemedText type="defaultSemiBold" style={styles.actionTitle}>
             Domestic 
           </ThemedText>
@@ -96,7 +100,7 @@ export default function HomeScreen() {
           style={[styles.actionCard, { borderColor: colors.border }]}
           onPress={navigateToInternational}
         >
-          <IconSymbol name="globe" size={40} color={colors.accent} />
+          <Entypo name="globe" size={40} color={colors.primary} />
           <ThemedText type="defaultSemiBold" style={styles.actionTitle}>
             International
           </ThemedText>
